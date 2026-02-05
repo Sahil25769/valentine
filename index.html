@@ -2,22 +2,53 @@
 <html>
 <head>
 <title>Valentine</title>
+
 <style>
 body{
-background:#ffccd5;
+background:#ffd6e0;
 text-align:center;
 font-family:Arial;
+overflow:hidden;
 }
+
 button{
 padding:15px 30px;
-font-size:20px;
+font-size:22px;
 border:none;
-border-radius:10px;
+border-radius:12px;
 margin:10px;
 cursor:pointer;
 }
-#yes{background:#ff4d6d;color:white;}
-#no{background:#555;color:white;position:absolute;}
+
+#yes{
+background:#ff4d6d;
+color:white;
+}
+
+#no{
+background:#555;
+color:white;
+position:absolute;
+}
+
+#msg{
+font-size:28px;
+color:#ff0055;
+margin-top:20px;
+display:none;
+}
+
+.heart{
+position:fixed;
+color:red;
+font-size:24px;
+animation:float 4s linear infinite;
+}
+
+@keyframes float{
+0%{bottom:0;opacity:1;}
+100%{bottom:100%;opacity:0;}
+}
 </style>
 </head>
 
@@ -26,16 +57,33 @@ cursor:pointer;
 <h1>Will you be my Valentine? ❤️</h1>
 <h2>— Sahil</h2>
 
-<button id="yes" onclick="alert('Yay! I knew it 😍')">YES</button>
+<button id="yes" onclick="love()">YES</button>
 <button id="no" onmouseover="move()">NO</button>
 
+<div id="msg">Yayyy 😍 I knew it! Love you ❤️</div>
+
 <script>
+
 function move(){
-var x=Math.random()*300;
-var y=Math.random()*300;
-document.getElementById("no").style.marginLeft=x+"px";
-document.getElementById("no").style.marginTop=y+"px";
+document.getElementById("no").style.left=Math.random()*300+"px";
+document.getElementById("no").style.top=Math.random()*300+"px";
 }
+
+function love(){
+document.getElementById("msg").style.display="block";
+
+setInterval(()=>{
+let h=document.createElement("div");
+h.className="heart";
+h.innerHTML="❤️";
+h.style.left=Math.random()*100+"%";
+document.body.appendChild(h);
+
+setTimeout(()=>{h.remove()},4000);
+
+},300);
+}
+
 </script>
 
 </body>
